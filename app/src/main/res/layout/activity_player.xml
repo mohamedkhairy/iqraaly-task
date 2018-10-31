@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="PlayerActivity"
+            type="khairy.com.iqraalytask.view.PlayerActivity" />
+
+        <variable
+            name="Index"
+            type="Integer" />
+
+        <variable
+            name="PlayerViewModel"
+            type="khairy.com.iqraalytask.viewModel.PlayerViewModel" />
+    </data>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/bookcover"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/post"
+            bind:imageUrl="@{PlayerViewModel.backgrounImageUrl}" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/back"
+                android:onClick="@{()-> PlayerViewModel.OnbackClicked(PlayerActivity)}"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/text_shape"
+                android:drawableLeft="@drawable/car"
+                android:drawablePadding="5dp"
+                android:elevation="3dp"
+                android:padding="3dp"
+                android:text="وضع القيادة"
+                android:textSize="15sp" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/titlebook"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:text="@{PlayerViewModel.getTitle(Index)}"
+                android:textColor="#fff" />
+
+
+            <com.google.android.exoplayer2.ui.PlayerView
+                android:id="@+id/audioView"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="20dp"
+                app:fastforward_increment="10000"
+                app:rewind_increment="10000"
+                app:show_timeout="0" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</layout>
+
